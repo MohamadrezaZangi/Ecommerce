@@ -24,7 +24,8 @@ const searchByWord = (event) => {
   btnAllClick();
   const phrase = event.target.value.toLowerCase().trim();
   products.forEach((product) => {
-    if (product.children[1].innerText.toLowerCase().includes(phrase)) product.style.display = "flex";
+    if (product.children[1].innerText.toLowerCase().includes(phrase))
+      product.style.display = "flex";
     else product.style.display = "none";
   });
 };
@@ -171,45 +172,42 @@ const cartLeave = () => {
   }, 1000);
 };
 
-fetch("https://fakestoreapi.com/products")
-  .then((res) => res.json())
-  .then((json) => {
-    console.log(json[1].title);
-    json.forEach((item) => {
-      console.log(item);
-      const newProductitems = document.createElement("div");
-      newProductitems.className = "product-items";
-      newProductitems.dataset.category = item.category;
-      allProducts.appendChild(newProductitems);
+async function fetch() {
+  // try{
+  const req = await axios.get("https://fakestoreapi.com/products");
+  const allProduct = req.data;
 
-      const newProductitemsImage = document.createElement("img");
-      newProductitemsImage.src = item.image;
-      newProductitems.appendChild(newProductitemsImage);
-
-      const newProductitemsH3 = document.createElement("H3");
-      newProductitemsH3.innerText = item.title;
-      newProductitemsH3.className = "caption";
-      newProductitems.appendChild(newProductitemsH3);
-
-      const newProductitemsDiv = document.createElement("div");
-      newProductitemsDiv.className = "cuntBTN";
-      newProductitems.appendChild(newProductitemsDiv);
-
-      const newProductitemsDivSpan = document.createElement("span");
-      newProductitemsDivSpan.className = "product-price";
-      newProductitemsDivSpan.innerText = item.price;
-      newProductitemsDiv.appendChild(newProductitemsDivSpan);
-
-      const newProductitemsDivButton = document.createElement("button");
-      newProductitemsDivButton.id = "addToCardBTN";
-      newProductitemsDivButton.className = "addToCard";
-      newProductitemsDivButton.innerText = "اضافه به زنبیل";
-      newProductitemsDiv.appendChild(newProductitemsDivButton);
-    });
-    // addToCardBTN.forEach((button) => {
-    //   button.addEventListener("click", addTocartHandel);
-    // });
+  // console.log(allProduct);
+  allProduct.forEach((item) => {
+    //  console.log(item);
+    const newProductitems = document.createElement("div");
+    newProductitems.className = "product-items";
+    newProductitems.dataset.category = item.category;
+    allProducts.appendChild(newProductitems);
+    const newProductitemsImage = document.createElement("img");
+    newProductitemsImage.src = item.image;
+    newProductitems.appendChild(newProductitemsImage);
+    const newProductitemsH3 = document.createElement("H3");
+    newProductitemsH3.innerText = item.title;
+    newProductitemsH3.className = "caption";
+    newProductitems.appendChild(newProductitemsH3);
+    const newProductitemsDiv = document.createElement("div");
+    newProductitemsDiv.className = "cuntBTN";
+    newProductitems.appendChild(newProductitemsDiv);
+    const newProductitemsDivSpan = document.createElement("span");
+    newProductitemsDivSpan.className = "product-price";
+    newProductitemsDivSpan.innerText = item.price;
+    newProductitemsDiv.appendChild(newProductitemsDivSpan);
+    const newProductitemsDivButton = document.createElement("button");
+    newProductitemsDivButton.id = "addToCardBTN";
+    newProductitemsDivButton.className = "addToCard";
+    newProductitemsDivButton.innerText = "اضافه به زنبیل";
+    newProductitemsDiv.appendChild(newProductitemsDivButton);
   });
+  addToCardBTN.forEach((button) => {
+    button.addEventListener("click", addTocartHandel);
+  });
+}
 
 const changeCartItem = (e) => {
   if (e.target.classList.contains("buttonRemoveLi")) {
@@ -233,4 +231,5 @@ window.addEventListener("load", () => {
   zanbil.addEventListener("mouseover", cartHover);
   zanbil.addEventListener("mouseout", cartLeave);
   cart.addEventListener("click", changeCartItem);
+  fetch();
 });

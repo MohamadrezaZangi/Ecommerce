@@ -3,18 +3,18 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title> بقالی </title>
+    <title>بقالی</title>
     <link rel="stylesheet" href="./css/style.css" />
   </head>
   <body>
     <header>
       <img id="zanbil" src="./Image/zanbil.jpg" />
-      <p> بقالی </p>
+      <p>بقالی</p>
     </header>
     <main>
       <div id="cart" class="carthiiden">
         <div>
-          <h2> چوخ </h2>
+          <h2>چوخ</h2>
           <p>زنبیل خالی</p>
           <h2>جمع کل زنبیل</h2>
         </div>
@@ -25,20 +25,25 @@
       <div id="cartMessageBoxborde" class="carthiiden"></div>
       <div id="cartMessageBox" class="carthiiden">
         <p class="messageBoxItemName" id="messageBoxItemName"></p>
-        <h3> به زنبیل اضافه شد</h3>
+        <h3>به زنبیل اضافه شد</h3>
       </div>
 
       <div class="search">
         <input id="search-word" type="text" class="text-input" placeholder="گشتن به دنبال جنس" />
         <div class="price-search-area">
-          <input id="search-price" class="text-input" type="number" placeholder="گشتن به دنبال قیمت" />
+          <input
+            id="search-price"
+            class="text-input"
+            type="number"
+            placeholder="گشتن به دنبال قیمت"
+          />
           <button id="search-btn">بگرد</button>
         </div>
       </div>
 
       <div class="container">
         <div class="CategoryBar">
-          <h5> دسته بندی </h5>
+          <h5>دسته بندی</h5>
           <button id="BtnAll" class="filters active">همشون</button>
           <button id="BtnTech" class="filters">برقیا</button>
           <button id="BtnHealth" class="filters">دوایا</button>
@@ -129,7 +134,7 @@
         </div>
       </div>
     </main>
-
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="./script/script.js"></script>
   </body>
 </html>
